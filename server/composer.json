@@ -1,0 +1,30 @@
+{
+    "name": "ingress/website",
+    "description": "Ingress logistics website",
+    "type": "project",
+    "require": {
+        "mailgun/mailgun-php": "^4.3",
+        "nyholm/psr7": "^1.8",
+        "php-http/curl-client": "^2.3",
+        "guzzlehttp/psr7": "^2.8",
+        "php-http/message": "^1.16",
+        "aws/aws-sdk-php": "^3.356",
+        "vlucas/phpdotenv": "^5.6"
+    },
+    "autoload": {
+        "psr-4": {
+            "Ingress\\Website\\": "server/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Obinna Okafor",
+            "email": "obinna@fiveninesng.com"
+        }
+    ],
+    "config": {
+        "allow-plugins": {
+            "php-http/discovery": true
+        }
+    }
+}
