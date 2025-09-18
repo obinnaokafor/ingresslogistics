@@ -1,9 +1,15 @@
 <?php
-header("Access-Control-Allow-Origin: *");
+session_start();
+header("Access-Control-Allow-Origin: https://ingresslogistics.com");
 header("Access-Control-Allow-Methods: POST, OPTIONS");
 header("Access-Control-Allow-Headers: Content-Type");
 
 require 'vendor/autoload.php';
+
+$data = json_decode(file_get_contents('php://input'), true);
+if ($data['csrf_token'] !== $_SERVER['csrf_token']) {
+    exit(0);
+}
 
 use Aws\Ses\SesClient;
 use Aws\Exception\AwsException;

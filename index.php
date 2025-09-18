@@ -1,3 +1,14 @@
+<?php
+   session_start();
+   if(!isset($_SESSION["csrf_token"])) {
+      $token = md5(uniqid(rand(), true));
+      $_SESSION["csrf_token"] = $token;
+   } else {
+      // Reuse the token
+      $token = $_SESSION["csrf_token"];
+   }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
