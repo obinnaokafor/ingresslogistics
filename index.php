@@ -384,9 +384,9 @@
                     <p style="margin-bottom: 1.5rem; color: #4b5563;">If your question isn't listed here, we'd love to
                         hear from you.</p>
                     <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
-                        <a href="tel:+447424289185"
+                        <a href="tel:+447404039458"
                             style="color: #dc2626; text-decoration: none; font-weight: bold;">📞
-                            +44 742 428 9185
+                            +44 740 403 9458
                         </a>
                         <a href="mailto:support@ingresslogistics.com"
                             style="color: #dc2626; text-decoration: none; font-weight: bold;">📧
@@ -432,7 +432,7 @@
                 <div class="footer-section">
                     <h3>Contact Info</h3>
                     <ul>
-                        <li>📞 <a href="tel:+447424289185">+44 7424 289 185</a></li>
+                        <li>📞 <a href="tel:+447404039458">+44 740 403 9458</a></li>
                         <li>✉️ <a href="mailto:support@ingresslogistics.com">support@ingresslogistics.com</a></li>
                         <li>📍 Kent, United Kingdom</li>
                         <li>🕒 24/7 Support</li>
