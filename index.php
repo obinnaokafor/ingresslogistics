@@ -1,14 +1,3 @@
-<?php
-   session_start();
-   if(!isset($_SESSION["csrf_token"])) {
-      $token = md5(uniqid(rand(), true));
-      $_SESSION["csrf_token"] = $token;
-   } else {
-      // Reuse the token
-      $token = $_SESSION["csrf_token"];
-   }
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -484,7 +473,7 @@
                 return;
             }
 
-            fetch('https://server.ingresslogistics.com', {
+            fetch('api.php', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
