@@ -1,3 +1,14 @@
+<?php
+   session_start();
+   if(!isset($_SESSION["csrf_token"])) {
+      $token = md5(uniqid(rand(), true));
+      $_SESSION["csrf_token"] = $token;
+   } else {
+      // Reuse the token
+      $token = $_SESSION["csrf_token"];
+   }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -30,7 +41,7 @@
             <ul class="nav-links">
                 <li><a href="#services">Services</a></li>
                 <li><a href="#about">About</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <!-- <li><a href="#contact">Contact</a></li> -->
                 <!-- <li><a href="#tracking">Track Shipment</a></li> -->
             </ul>
             <a href="#quote" class="get-quote-btn">Get Quote</a>
@@ -373,13 +384,13 @@
                     <p style="margin-bottom: 1.5rem; color: #4b5563;">If your question isn't listed here, we'd love to
                         hear from you.</p>
                     <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
-                        <a href="tel:+447424289185"
-                            style="background: #dc2626; color: white; padding: 12px 24px; border-radius: 25px; text-decoration: none; font-weight: bold;">📞
-                            Call us
+                        <a href="tel:+447404039458"
+                            style="color: #dc2626; text-decoration: none; font-weight: bold;">📞
+                            +44 740 403 9458
                         </a>
                         <a href="mailto:support@ingresslogistics.com"
-                            style="background: #dc2626; color: white; padding: 12px 24px; border-radius: 25px; text-decoration: none; font-weight: bold;">📧
-                            Email us
+                            style="color: #dc2626; text-decoration: none; font-weight: bold;">📧
+                            support@ingresslogistics.com
                         </a>
                     </div>
                 </div>
@@ -398,34 +409,30 @@
                 <div class="footer-section">
                     <h3>Services</h3>
                     <ul>
-                        <li><a href="#">House Removals</a></li>
-                        <li><a href="#">Office Relocations</a></li>
-                        <li><a href="#">Man & Van</a></li>
-                        <li><a href="#">Vehicle Transport</a></li>
-                        <li><a href="#">International Shipping</a></li>
+                        <li><a href="#services">Home Removals</a></li>
+                        <li><a href="#services">Office Relocations</a></li>
+                        <li><a href="#services">Man & Van</a></li>
+                        <li><a href="#services">Single Item Delivery</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
                     <h3>Support</h3>
                     <ul>
-                        <li><a href="#">Track Shipment</a></li>
                         <li><a href="#quote">Get Quote</a></li>
-                        <li><a href="#">FAQs</a></li>
-                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#faq">FAQs</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
                     <h3>Company</h3>
                     <ul>
-                        <li><a href="#">About Us</a></li>
-                        <li><a href="#">Partner With Us</a></li>
-                        <li><a href="#">Reviews</a></li>
+                        <li><a href="#about">About Us</a></li>
+                        <!-- <li><a href="#">Partner With Us</a></li> -->
                     </ul>
                 </div>
                 <div class="footer-section">
                     <h3>Contact Info</h3>
                     <ul>
-                        <li>📞 <a href="tel:+447424289185">+44 7424 289 185</a></li>
+                        <li>📞 <a href="tel:+447404039458">+44 740 403 9458</a></li>
                         <li>✉️ <a href="mailto:support@ingresslogistics.com">support@ingresslogistics.com</a></li>
                         <li>📍 Kent, United Kingdom</li>
                         <li>🕒 24/7 Support</li>
@@ -458,10 +465,17 @@
             customAlert.style.display = 'none';
         }
 
+        const closeSubmitButton = document.querySelector('.quote-btn');
+        const buttonText = closeSubmitButton.textContent;
+
         closeAlertButton.addEventListener('click', closeCustomAlert);
         // Quote form submission
         document.getElementById('quoteForm').addEventListener('submit', function (e) {
             e.preventDefault();
+
+            closeSubmitButton.disabled = true;
+            closeSubmitButton.textContent = 'Submitting...';
+
             const formData = new FormData(this);
             const data = Object.fromEntries(formData);
 
@@ -480,6 +494,8 @@
             .then(result => {
                 showCustomAlert("Thank you, " + data.name + "! Your quote request has been received. We'll contact you soon with a detailed quote.");
 
+                closeSubmitButton.disabled = false;
+                closeSubmitButton.textContent = buttonText;
                 // Reset form
                 this.reset();
 
