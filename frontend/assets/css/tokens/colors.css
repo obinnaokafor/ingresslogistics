@@ -1,0 +1,93 @@
+/* ============================================================
+   Ingress Logistics — Color tokens
+   Sourced from the brand logo: crimson red #D01840, royal blue #283088
+   ============================================================ */
+:root {
+  /* ---- Brand red (primary / "red carpet") ---- */
+  --red-50:  #FDF1F4;
+  --red-100: #FBDCE4;
+  --red-200: #F4AFBF;
+  --red-300: #EC8198;
+  --red-400: #DE4467;
+  --red-500: #D01840; /* brand crimson — exact logo value */
+  --red-600: #B0123A; /* hover / pressed */
+  --red-700: #8E0E2E;
+  --red-800: #6B0A22;
+
+  /* ---- Brand blue (royal / trust) ---- */
+  --blue-50:  #F0F1F9;
+  --blue-100: #E0E2F1;
+  --blue-200: #B9BDDD;
+  --blue-300: #8A90C2;
+  --blue-400: #545CA3;
+  --blue-500: #283088; /* brand royal blue — exact logo value */
+  --blue-600: #1F2569;
+  --blue-700: #161B4D;
+  --blue-800: #0F1335;
+
+  /* ---- Neutrals (cool slate) ---- */
+  --white:    #FFFFFF;
+  --slate-25:  #FBFCFD;
+  --slate-50:  #F7F9FB;
+  --slate-100: #EEF1F5;
+  --slate-200: #E2E7EE;
+  --slate-300: #CBD3DE;
+  --slate-400: #94A0B1;
+  --slate-500: #65718230;
+  --slate-500-solid: #657182;
+  --slate-600: #4B5563;
+  --slate-700: #374151;
+  --slate-800: #1F2937;
+  --slate-900: #111827;
+  --black:     #0A0E16;
+
+  /* ---- Support / status ---- */
+  --success-500: #1F8A5B;
+  --success-50:  #E8F5EF;
+  --warning-500: #C2820B;
+  --warning-50:  #FBF3E0;
+  --info-500:    #283088;
+
+  /* ============================================================
+     Semantic aliases — prefer these in components
+     ============================================================ */
+  --color-primary:        var(--red-500);
+  --color-primary-hover:   var(--red-600);
+  --color-primary-active:  var(--red-700);
+  --color-primary-tint:    var(--red-50);
+  --color-on-primary:      var(--white);
+
+  --color-secondary:       var(--blue-500);
+  --color-secondary-hover: var(--blue-600);
+  --color-secondary-tint:  var(--blue-50);
+  --color-on-secondary:    var(--white);
+
+  /* Text */
+  --text-strong:  var(--slate-900);
+  --text-heading: var(--slate-800);
+  --text-body:    var(--slate-600);
+  --text-muted:   var(--slate-500-solid);
+  --text-on-dark: rgba(255,255,255,0.92);
+  --text-on-dark-muted: rgba(255,255,255,0.62);
+  --text-link:    var(--red-500);
+
+  /* Surfaces */
+  --surface-page:   var(--slate-50);
+  --surface-card:   var(--white);
+  --surface-raised: var(--white);
+  --surface-sunken: var(--slate-100);
+  --surface-dark:   var(--slate-800);
+  --surface-brand:  var(--blue-500);
+  --surface-brand-red: var(--red-500);
+
+  /* Borders & dividers */
+  --border-subtle: var(--slate-200);
+  --border-default: var(--slate-300);
+  --border-strong: var(--slate-400);
+  --border-focus:  var(--blue-500);
+
+  /* Brand gradient (hero / closing band) — red → royal blue */
+  --gradient-brand: linear-gradient(135deg, var(--red-500) 0%, var(--blue-500) 100%);
+  --gradient-red:   linear-gradient(135deg, var(--red-500), var(--red-700));
+  --gradient-blue:  linear-gradient(135deg, var(--blue-500), var(--blue-700));
+}

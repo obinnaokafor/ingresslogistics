@@ -1,0 +1,58 @@
+/* ============================================================
+   Ingress Logistics — Typography tokens
+   Display: Montserrat (geometric, echoes the logo wordmark)
+   Body/UI: Mulish (humanist, friendly, professional)
+   ============================================================ */
+:root {
+  /* Families */
+  --font-display: 'Montserrat', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-body:    'Mulish', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono:    ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+
+  /* Weights */
+  --weight-regular:  400;
+  --weight-medium:   500;
+  --weight-semibold: 600;
+  --weight-bold:     700;
+  --weight-extrabold:800;
+
+  /* Type scale (1.250 major-third, 16px base) */
+  --text-xs:   0.75rem;   /* 12 */
+  --text-sm:   0.875rem;  /* 14 */
+  --text-base: 1rem;      /* 16 */
+  --text-md:   1.125rem;  /* 18 */
+  --text-lg:   1.375rem;  /* 22 */
+  --text-xl:   1.75rem;   /* 28 */
+  --text-2xl:  2.25rem;   /* 36 */
+  --text-3xl:  2.75rem;   /* 44 */
+  --text-4xl:  3.5rem;    /* 56 */
+
+  /* Line heights */
+  --leading-tight:   1.1;
+  --leading-snug:    1.25;
+  --leading-normal:  1.5;
+  --leading-relaxed: 1.7;
+
+  /* Letter spacing */
+  --tracking-tight:  -0.02em;
+  --tracking-normal: 0;
+  --tracking-wide:   0.04em;
+  --tracking-caps:   0.08em;
+
+  /* Semantic roles */
+  --display-font:   var(--font-display);
+  --display-weight: var(--weight-extrabold);
+  --display-leading:var(--leading-tight);
+  --display-tracking:var(--tracking-tight);
+
+  --heading-font:   var(--font-display);
+  --heading-weight: var(--weight-bold);
+
+  --body-font:      var(--font-body);
+  --body-weight:    var(--weight-regular);
+  --body-leading:   var(--leading-relaxed);
+
+  --eyebrow-font:    var(--font-body);
+  --eyebrow-weight:  var(--weight-bold);
+  --eyebrow-tracking:var(--tracking-caps);
+}
