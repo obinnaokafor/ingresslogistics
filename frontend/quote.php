@@ -40,6 +40,8 @@ require __DIR__ . '/partials/head.php';
         <!-- ===== Form ===== -->
         <form class="quote-form js-enquiry" id="quoteForm" data-endpoint="<?= htmlspecialchars(QUOTE_ENDPOINT) ?>" novalidate>
           <input type="hidden" name="service_line" value="removals">
+          <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(il_csrf()) ?>">
+          <div class="hp-field" aria-hidden="true"><label>Company<input type="text" name="company" tabindex="-1" autocomplete="off"></label></div>
           <div class="form-group">
             <div class="form-group-head"><span class="step-badge">1</span><h2>Your route</h2></div>
             <div class="form-grid">

@@ -419,6 +419,9 @@ a.service-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-lg)
 .modal-overlay.is-open { display: flex; }
 .modal { background: var(--white); border-radius: var(--radius-lg); padding: var(--space-8); max-width: 440px; text-align: center; box-shadow: var(--shadow-xl); }
 .modal .modal-icon { width: 64px; height: 64px; border-radius: var(--radius-pill); margin: 0 auto var(--space-5); background: var(--success-50); color: var(--success-500); display: flex; align-items: center; justify-content: center; }
+.modal .modal-icon--error { display: none; background: var(--red-50); color: var(--color-primary); }
+.modal.is-error .modal-icon--success { display: none; }
+.modal.is-error .modal-icon--error { display: flex; }
 .modal h2 { font-family: var(--font-display); font-weight: var(--weight-extrabold); font-size: var(--text-xl); color: var(--text-heading); margin: 0 0 var(--space-3); }
 .modal p { color: var(--text-body); line-height: 1.6; margin: 0 0 var(--space-6); }
 
@@ -436,6 +439,9 @@ a.service-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-lg)
 
 /* Reviews slot (Trustindex) — empty until configured */
 .reviews-slot:empty { display: none; }
+
+/* Honeypot — visually hidden bot trap (must stay invisible but in the DOM) */
+.hp-field { position: absolute !important; left: -9999px !important; top: auto; width: 1px; height: 1px; overflow: hidden; }
 
 /* utility */
 .mt-8 { margin-top: var(--space-8); }

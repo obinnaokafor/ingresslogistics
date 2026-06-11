@@ -24,6 +24,8 @@ function il_enquiry_form(array $cfg) {
   ?>
   <form class="quote-form js-enquiry" data-endpoint="<?= htmlspecialchars(QUOTE_ENDPOINT) ?>" novalidate>
     <input type="hidden" name="service_line" value="<?= htmlspecialchars($line) ?>">
+    <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(il_csrf()) ?>">
+    <div class="hp-field" aria-hidden="true"><label>Company<input type="text" name="company" tabindex="-1" autocomplete="off"></label></div>
     <div class="form-grid">
       <?php foreach ($fields as $f):
         $type  = $f['type'] ?? 'text';

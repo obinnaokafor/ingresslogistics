@@ -9,6 +9,17 @@
   'use strict';
 
   function init() {
+    /* Phone-click tracking — fire a GA4 / Ads event on any tel: link click.
+       Lives here (loads site-wide) so it covers pages without an enquiry form. */
+    document.addEventListener('click', function (e) {
+      var link = e.target.closest && e.target.closest('a[href^="tel:"]');
+      if (!link || typeof window.gtag !== 'function') return;
+      window.gtag('event', 'phone_call_click', {
+        phone_number: link.getAttribute('href').replace('tel:', ''),
+        page_location: window.location.href
+      });
+    });
+
     /* Sticky header shadow */
     var header = document.getElementById('siteHeader');
     if (header) {
