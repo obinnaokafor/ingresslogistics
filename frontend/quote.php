@@ -1,7 +1,7 @@
 <?php
 $page        = 'quote';
 $title       = 'Get a Free Moving Quote | Ingress Logistics';
-$description = 'Get a free, no-obligation quote for your home or office move in minutes. Transparent pricing, 5-star service across the UK. Tell us about your move.';
+$description = 'Get a free, no-obligation quote for your home or office move in minutes. Transparent pricing, fully insured, 5-star service across the UK. Tell us about your move.';
 $canonical   = 'https://ingresslogistics.com/quote.php';
 
 require_once __DIR__ . '/partials/config.php';
@@ -18,7 +18,7 @@ if (!in_array($selected_service, $services, true)) $selected_service = '';
 $benefits = [
   ['zap', 'Fast response', 'Most quotes sent back within a few hours during business hours.'],
   ['receipt-text', 'Transparent pricing', 'A clear breakdown with no hidden fees or surprise charges.'],
-  ['shield-check', 'Comprehensive cover on every move, big or small.'],
+  // ['shield-check', 'Fully insured', 'Comprehensive cover on every move, big or small.'],
   ['heart-handshake', 'Personal touch', 'Empathy, care and a personal touch on every job.'],
 ];
 
