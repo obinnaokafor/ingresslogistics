@@ -19,7 +19,7 @@ $benefits = [
   ['zap', 'Fast response', 'Most quotes sent back within a few hours during business hours.'],
   ['receipt-text', 'Transparent pricing', 'A clear breakdown with no hidden fees or surprise charges.'],
   ['shield-check', 'Fully insured', 'Comprehensive cover on every move, big or small.'],
-  ['venus', 'Female-owned', 'Empathy, care and a personal touch on every job.'],
+  ['heart-handshake', 'Personal touch', 'Empathy, care and a personal touch on every job.'],
 ];
 
 require __DIR__ . '/partials/head.php';
@@ -38,7 +38,7 @@ require __DIR__ . '/partials/head.php';
       <div class="quote-grid">
 
         <!-- ===== Form ===== -->
-        <form class="quote-form js-enquiry" id="quoteForm" data-endpoint="<?= htmlspecialchars(QUOTE_ENDPOINT) ?>" novalidate>
+        <form class="quote-form js-enquiry" id="quoteForm" data-endpoint="<?= htmlspecialchars(QUOTE_ENDPOINT) ?>" enctype="multipart/form-data" novalidate>
           <input type="hidden" name="service_line" value="removals">
           <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(il_csrf()) ?>">
           <div class="hp-field" aria-hidden="true"><label>Company<input type="text" name="company" tabindex="-1" autocomplete="off"></label></div>
@@ -98,6 +98,11 @@ require __DIR__ . '/partials/head.php';
               <div class="field col-span-2">
                 <label for="details">Additional details</label>
                 <textarea id="details" name="details" rows="4" placeholder="Tell us what you're moving — rough number of rooms or items, anything fragile, parking or lift access…"></textarea>
+              </div>
+              <div class="field col-span-2">
+                <label for="photos">Photos (optional)</label>
+                <input type="file" id="photos" name="photos[]" accept="image/jpeg,image/png,image/webp,image/heic" multiple>
+                <p class="field-hint">Up to 3 images, 5MB each — helps us quote more accurately.</p>
               </div>
             </div>
           </div>

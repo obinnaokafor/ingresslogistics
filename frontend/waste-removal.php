@@ -38,6 +38,7 @@ $enquiry = [
     ['type'=>'tel','name'=>'phone','label'=>'Phone number','placeholder'=>'07000 000000','required'=>true,'autocomplete'=>'tel'],
     ['type'=>'email','name'=>'email','label'=>'Email address','placeholder'=>'you@email.com','required'=>true,'col'=>'full','autocomplete'=>'email'],
     ['type'=>'textarea','name'=>'details','label'=>'Describe the items','placeholder'=>'Tell us what needs clearing — rough list of items, anything heavy or awkward, etc.','col'=>'full'],
+    ['type'=>'file','name'=>'photos','label'=>'Photos (optional)','col'=>'full','accept'=>'image/jpeg,image/png,image/webp,image/heic','note'=>'Up to 3 images, 5MB each — helps us quote more accurately.'],
   ],
 ];
 $form_heading_eyebrow = 'Fast response';

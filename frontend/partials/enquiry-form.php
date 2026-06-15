@@ -22,7 +22,7 @@ function il_enquiry_form(array $cfg) {
   $note   = $cfg['note'] ?? "We'll never share your details. No obligation.";
   $fields = $cfg['fields'] ?? [];
   ?>
-  <form class="quote-form js-enquiry" data-endpoint="<?= htmlspecialchars(QUOTE_ENDPOINT) ?>" novalidate>
+  <form class="quote-form js-enquiry" data-endpoint="<?= htmlspecialchars(QUOTE_ENDPOINT) ?>" enctype="multipart/form-data" novalidate>
     <input type="hidden" name="service_line" value="<?= htmlspecialchars($line) ?>">
     <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(il_csrf()) ?>">
     <div class="hp-field" aria-hidden="true"><label>Company<input type="text" name="company" tabindex="-1" autocomplete="off"></label></div>
@@ -56,6 +56,12 @@ function il_enquiry_form(array $cfg) {
           <div class="field<?= $col ?>">
             <label for="<?= $id ?>"><?= htmlspecialchars($label) ?></label>
             <textarea id="<?= $id ?>" name="<?= htmlspecialchars($name) ?>" rows="<?= (int)($f['rows'] ?? 4) ?>" placeholder="<?= htmlspecialchars($ph) ?>"<?= $req ? ' required' : '' ?>></textarea>
+          </div>
+        <?php elseif ($type === 'file'): ?>
+          <div class="field<?= $col ?>">
+            <label for="<?= $id ?>"><?= htmlspecialchars($label) ?></label>
+            <input type="file" id="<?= $id ?>" name="<?= htmlspecialchars($name) ?>[]" accept="<?= htmlspecialchars($f['accept'] ?? 'image/jpeg,image/png,image/webp,image/heic') ?>" multiple<?= $req ? ' required' : '' ?>>
+            <?php if (!empty($f['note'])): ?><p class="field-hint"><?= htmlspecialchars($f['note']) ?></p><?php endif; ?>
           </div>
         <?php else: ?>
           <div class="field<?= $col ?>">

@@ -3,8 +3,8 @@
 if (!defined('SITE_URL')) {
   define('SITE_URL', 'https://ingresslogistics.com/');           // trailing slash
   define('SITE_NAME', 'Ingress Logistics Limited');
-  define('SITE_PHONE', '+44 740 403 9458');
-  define('SITE_PHONE_HREF', 'tel:+447404039458');
+  define('SITE_PHONE', '+44 330 043 6213');
+  define('SITE_PHONE_HREF', 'tel:+443300436213');
   define('SITE_EMAIL', 'support@ingresslogistics.com');
   /* Same-origin enquiry handler (no CORS). Root-relative so it works
      identically on localhost and production — no editing before deploy. */

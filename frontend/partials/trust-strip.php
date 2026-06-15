@@ -2,7 +2,7 @@
 $trust_items = [
   ['shield-check', 'Fully insured'],
   ['star', '5-star rated'],
-  ['venus', 'Female-owned'],
+  ['heart-handshake', 'Personal touch'],
   ['badge-pound-sterling', 'No hidden fees'],
   ['clock', '24/7 support'],
   ['truck', 'UK-wide'],

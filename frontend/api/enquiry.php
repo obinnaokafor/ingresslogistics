@@ -31,7 +31,10 @@ if (($_SERVER['REQUEST_METHOD'] ?? 'GET') !== 'POST') {
 /* ---- Same-origin guard (Origin header is sent on cross-origin POSTs) ---- */
 $host = $_SERVER['HTTP_HOST'] ?? '';
 if (!empty($_SERVER['HTTP_ORIGIN'])) {
-    $originHost = parse_url($_SERVER['HTTP_ORIGIN'], PHP_URL_HOST) ?? '';
+    // Compare host *and* port — HTTP_HOST keeps the port (e.g. localhost:8000),
+    // so rebuild the same host:port shape from the Origin before comparing.
+    $o = parse_url($_SERVER['HTTP_ORIGIN']);
+    $originHost = ($o['host'] ?? '') . (isset($o['port']) ? ':' . $o['port'] : '');
     if ($originHost !== '' && strcasecmp($originHost, $host) !== 0) {
         respond(403, ['ok' => false, 'error' => 'bad_origin']);
     }
@@ -39,7 +42,12 @@ if (!empty($_SERVER['HTTP_ORIGIN'])) {
 
 session_start();
 
-$data = json_decode(file_get_contents('php://input'), true);
+/* ---- Input: multipart (forms with file uploads) or JSON (everything else) ---- */
+if (stripos($_SERVER['CONTENT_TYPE'] ?? '', 'multipart/form-data') !== false) {
+    $data = $_POST;
+} else {
+    $data = json_decode(file_get_contents('php://input'), true);
+}
 if (!is_array($data)) {
     respond(400, ['ok' => false, 'error' => 'bad_request']);
 }
@@ -147,14 +155,70 @@ if ($envDir !== null) {
     Dotenv\Dotenv::createImmutable($envDir)->safeLoad();
 }
 
+/* ---- Shared AWS config (used by both S3 and SES below) ---- */
+$awsRegion = $_ENV['AWS_REGION'] ?? 'eu-west-2';
+$awsCreds  = [
+    'key'    => $_ENV['AWS_ACCESS_KEY_ID'] ?? '',
+    'secret' => $_ENV['AWS_SECRET_ACCESS_KEY'] ?? '',
+];
+
+/* ============================================================
+   Upload any attached photos to S3 and link them in the email.
+   Input name is photos[], so $_FILES['photos'] holds parallel arrays.
+   Failures are logged and skipped — never block the enquiry email.
+   ============================================================ */
+$allowedImages = ['image/jpeg' => 'jpg', 'image/png' => 'png', 'image/webp' => 'webp', 'image/heic' => 'heic'];
+$maxBytes = 5 * 1024 * 1024;
+$maxFiles = 3;
+$imageUrls = [];
+
+if (!empty($_FILES['photos']['name']) && is_array($_FILES['photos']['name'])) {
+    try {
+        $s3 = new Aws\S3\S3Client([
+            'version'     => 'latest',
+            'region'      => $awsRegion,
+            'credentials' => $awsCreds,
+        ]);
+        $bucket = 'ingress-logistics';
+        $finfo  = new finfo(FILEINFO_MIME_TYPE);
+        $count  = min(count($_FILES['photos']['name']), $maxFiles);
+        for ($i = 0; $i < $count; $i++) {
+            if (($_FILES['photos']['error'][$i] ?? UPLOAD_ERR_NO_FILE) !== UPLOAD_ERR_OK) continue;
+            $tmp = $_FILES['photos']['tmp_name'][$i];
+            if (!is_uploaded_file($tmp) || ($_FILES['photos']['size'][$i] ?? 0) > $maxBytes) continue;
+            $mime = $finfo->file($tmp);
+            if (!isset($allowedImages[$mime])) continue;
+            $key = 'enquiries/' . date('Y/m/d') . '/' . bin2hex(random_bytes(8)) . '.' . $allowedImages[$mime];
+            $s3->putObject([
+                'Bucket'      => $bucket,
+                'Key'         => $key,
+                'SourceFile'  => $tmp,
+                'ContentType' => $mime,
+                // 'ACL'         => 'public-read',
+            ]);
+            $imageUrls[] = $s3->getObjectUrl($bucket, $key);
+        }
+    } catch (Throwable $e) {
+        error_log('enquiry.php S3 error: ' . $e->getMessage());
+    }
+}
+
+if ($imageUrls) {
+    $email_body .= "\nPhotos:\n";
+    $body_html  .= "<h2>Photos</h2>";
+    foreach ($imageUrls as $url) {
+        $email_body .= $url . "\n";
+        $esc = htmlspecialchars($url);
+        $body_html .= '<p><a href="' . $esc . '">' . $esc . '</a><br>'
+                    . '<img src="' . $esc . '" alt="" style="max-width:320px;height:auto"></p>';
+    }
+}
+
 try {
     $client = new Aws\Ses\SesClient([
         'version' => 'latest',
-        'region'  => $_ENV['AWS_REGION'] ?? 'eu-west-2',
-        'credentials' => [
-            'key'    => $_ENV['AWS_ACCESS_KEY_ID'] ?? '',
-            'secret' => $_ENV['AWS_SECRET_ACCESS_KEY'] ?? '',
-        ],
+        'region'  => $awsRegion,
+        'credentials' => $awsCreds,
     ]);
     $client->sendEmail([
         'Destination' => ['ToAddresses' => [$_ENV['RECEPIENT_EMAIL'] ?? '']],
