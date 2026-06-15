@@ -1,7 +1,7 @@
 <?php
 $page        = 'removals';
 $title       = 'Home Removals Kent & London | House Movers — Ingress Logistics';
-$description = 'Professional home removals across Kent and London. House moves, apartment relocations, office moves and packing — fully insured, no hidden fees. Free quote.';
+$description = 'Professional home removals across Kent and London. House moves, apartment relocations, office moves and packing — no hidden fees. Free quote.';
 $canonical   = 'https://ingresslogistics.com/home-removals.php';
 
 require_once __DIR__ . '/partials/config.php';
@@ -9,13 +9,13 @@ require_once __DIR__ . '/partials/icons.php';
 
 $services = [
   ['truck', 'Top Tier Home Removal', 'Most popular', 'Our full white-glove service — we arrive with everything and handle the whole move, room to room.',
-    ['Packing materials & boxes', 'Full packing & unpacking', 'Loading, transport & placement', 'Fully insured']],
+    ['Packing materials & boxes', 'Full packing & unpacking', 'Loading, transport & placement']],
   ['home', 'Basic Home Removal', null, 'You pack, we do the heavy lifting. Ideal when you want to save by boxing up yourself.',
-    ['Careful loading & transport', 'Furniture placement', 'Trained, friendly movers', 'Fully insured']],
+    ['Careful loading & transport', 'Furniture placement', 'Trained, friendly movers']],
   ['user-round-cog', 'Man & Van Service', 'Best value', 'A budget-friendly driver-and-van option where you lend a hand loading and unloading.',
-    ['Driver & van', 'Help loading & unloading', 'Flexible timing', 'Fully insured']],
+    ['Driver & van', 'Help loading & unloading', 'Flexible timing']],
   ['package', 'Single Item Delivery', null, 'Just bought a sofa, fridge or wardrobe? We collect and deliver it straight to your door.',
-    ['Collection & delivery', 'Careful handling', 'Doorstep placement', 'Fully insured']],
+    ['Collection & delivery', 'Careful handling', 'Doorstep placement']],
   ['wrench', 'Assembly & Disassembly', null, 'Flat-pack and furniture taken apart at pickup and rebuilt at your new place.',
     ['Disassembly at pickup', 'Reassembly at destination', 'Tools & expertise', 'Fixings carefully managed']],
   ['building-2', 'Office Relocation', null, 'Move your business with minimal downtime — planned around your schedule.',
@@ -23,7 +23,7 @@ $services = [
 ];
 
 $always = [
-  ['shield-check', 'Fully insured', 'Comprehensive cover on every move, big or small.'],
+  ['shield-check', 'Comprehensive cover on every move, big or small.'],
   ['badge-pound-sterling', 'No hidden fees', 'A clear, transparent quote — the price we agree is the price you pay.'],
   ['heart-handshake', 'Extra care', 'Fragile and valuable items handled as if they were our own.'],
   ['clock', 'On time, every time', 'We respect your schedule and turn up when we say we will.'],
@@ -52,7 +52,7 @@ require __DIR__ . '/partials/head.php';
     <div class="container">
       <span class="eyebrow">Home removals · Kent &amp; London</span>
       <h1 class="kinetic">Home removals in Kent &amp; London, the red carpet way</h1>
-      <p>House moves, apartment relocations, office moves and packing — from a single item to a full home. Choose the level of service that fits your move, all fully insured with no hidden fees.</p>
+      <p>House moves, apartment relocations, office moves and packing — from a single item to a full home. Choose the level of service that fits your move with no hidden fees.</p>
       <div class="hero-actions">
         <a href="quote.php" class="btn btn--primary btn--lg">Get your free quote <?= il_icon('arrow-right', 18) ?></a>
         <a href="<?= SITE_PHONE_HREF ?>" class="btn btn--secondary btn--lg"><?= il_icon('phone', 17) ?> Call now</a>

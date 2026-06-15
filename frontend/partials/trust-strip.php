@@ -1,6 +1,6 @@
 <?php
 $trust_items = [
-  ['shield-check', 'Fully insured'],
+  // ['shield-check', 'Fully insured'],
   ['star', '5-star rated'],
   ['heart-handshake', 'Personal touch'],
   ['badge-pound-sterling', 'No hidden fees'],

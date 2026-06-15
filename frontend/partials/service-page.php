@@ -67,7 +67,7 @@ require __DIR__ . '/head.php';
           <div class="aside-dark">
             <h3>Why choose us?</h3>
             <ul>
-              <li><span class="ad-icon"><?= il_icon('shield-check', 20) ?></span><span><strong>Fully insured</strong><span class="ad-desc">Comprehensive cover on every job, big or small.</span></span></li>
+              <!-- <li><span class="ad-icon"><?= il_icon('shield-check', 20) ?></span><span><strong>Fully insured</strong><span class="ad-desc">Comprehensive cover on every job, big or small.</span></span></li> -->
               <li><span class="ad-icon"><?= il_icon('badge-pound-sterling', 20) ?></span><span><strong>No hidden fees</strong><span class="ad-desc">A clear, transparent quote with no surprises.</span></span></li>
               <li><span class="ad-icon"><?= il_icon('heart-handshake', 20) ?></span><span><strong>Personal touch</strong><span class="ad-desc">Empathy, care and a personal touch every time.</span></span></li>
             </ul>

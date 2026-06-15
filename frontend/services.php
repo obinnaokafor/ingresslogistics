@@ -1,7 +1,7 @@
 <?php
 $page        = 'services';
 $title       = 'Our Services — Removals, Storage, Waste & Decluttering | Kent & London';
-$description = 'Home removals, secure storage, waste clearance and professional decluttering across Kent and London. One trusted team — all fully insured.';
+$description = 'Home removals, secure storage, waste clearance and professional decluttering across Kent and London. One trusted team.';
 $canonical   = 'https://ingresslogistics.com/services.php';
 
 require_once __DIR__ . '/partials/config.php';
