@@ -1,0 +1,40 @@
+# Ingress Logistics — standalone PHP site, fronted by the shared Traefik proxy.
+#
+# No database, no second service: a single php-apache container serving
+# frontend/, with server/ (composer deps + .env) sitting outside the web root.
+# It joins the shared `web` network and declares its route via labels; the
+# standalone Traefik stack discovers it and issues the TLS cert automatically.
+#
+#   docker network create web        # once on the host (also created by proxy)
+#   docker compose up -d --build
+services:
+  web:
+    build: .
+    image: ingress-web:latest
+    restart: unless-stopped
+    # Host uses systemd-resolved (127.0.0.53), unreachable from a container, so
+    # outbound DNS (AWS SES) needs explicit resolvers.
+    dns:
+      - 8.8.8.8
+      - 1.1.1.1
+    # Not published to the host — only Traefik reaches it over the `web` network.
+    expose:
+      - "80"
+    volumes:
+      # AWS SES creds + sender/recipient. Kept off the image and outside the web
+      # root; must exist on the host (it's gitignored).
+      - ./server/.env:/var/www/html/server/.env:ro
+    networks: [web]
+    labels:
+      - traefik.enable=true
+      - traefik.docker.network=web
+      - traefik.http.routers.ingress.rule=Host(`ingresslogistics.com`) || Host(`www.ingresslogistics.com`)
+      - traefik.http.routers.ingress.entrypoints=websecure
+      - traefik.http.routers.ingress.tls.certresolver=le
+      - traefik.http.services.ingress.loadbalancer.server.port=80
+
+networks:
+  # Shared edge network owned by the standalone Traefik proxy stack. Create once:
+  #   docker network create web
+  web:
+    external: true
