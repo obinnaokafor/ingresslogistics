@@ -9,12 +9,28 @@
 (function () {
   'use strict';
 
-  var MAPS_KEY = 'AIzaSyBhU13nLy5ZA1PNh00H3G_Hca9X_7da5zQ';
+  var MAPS_KEY = 'AIzaSyApleTL9bwRaPVuAeamU0bC0vBph7ok79k';
 
   // PLACEHOLDER lead value for Google Ads optimisation — set this to a realistic
   // average value per enquiry (e.g. average job profit) before relying on it.
   var LEAD_VALUE = 50;
   var LEAD_CURRENCY = 'GBP';
+
+  // Image upload limits (mirrored server-side in api/enquiry.php).
+  var MAX_FILES = 3;
+  var MAX_FILE_MB = 5;
+  var ALLOWED_TYPES = ['image/jpeg', 'image/png', 'image/webp', 'image/heic'];
+
+  function validateFiles(files) {
+    if (files.length > MAX_FILES) return false;
+    for (var i = 0; i < files.length; i++) {
+      var f = files[i];
+      if (f.size > MAX_FILE_MB * 1024 * 1024) return false;
+      // HEIC sometimes reports an empty type in browsers — allow by extension too.
+      if (ALLOWED_TYPES.indexOf(f.type) === -1 && !/\.(jpe?g|png|webp|heic)$/i.test(f.name)) return false;
+    }
+    return true;
+  }
 
   function showModal(message, isError, title) {
     var m = document.getElementById('enquiryModal');
@@ -33,7 +49,7 @@
   }
 
   function wire(form) {
-    var endpoint = form.dataset.endpoint || 'https://server.ingresslogistics.com';
+    var endpoint = form.dataset.endpoint || '/api/enquiry.php';
     var btn = form.querySelector('[type="submit"]');
     var label = btn ? btn.innerHTML : '';
 
@@ -46,12 +62,25 @@
       });
       if (missing) { showModal('Please fill in all required fields before submitting.', true, 'Check the form'); return; }
 
+      var fd = new FormData(form);
+      // Plain object of the non-file fields — used for validation, gtag and the modal.
       var data = {};
-      new FormData(form).forEach(function (v, k) { data[k] = v; });
+      fd.forEach(function (v, k) { if (!(v instanceof File)) data[k] = v; });
+
+      // Image-bearing forms POST multipart so files ride along; others stay JSON.
+      var fileInput = form.querySelector('input[type="file"]');
+      var hasFiles = fileInput && fileInput.files && fileInput.files.length;
+      if (hasFiles && !validateFiles(fileInput.files)) {
+        showModal('Please attach up to ' + MAX_FILES + ' images (JPG, PNG, WEBP or HEIC), each under ' + MAX_FILE_MB + 'MB.', true, 'Check your photos');
+        return;
+      }
 
       if (btn) { btn.disabled = true; btn.textContent = 'Submitting…'; }
 
-      fetch(endpoint, {
+      fetch(endpoint, hasFiles ? {
+        method: 'POST',
+        body: fd
+      } : {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data)

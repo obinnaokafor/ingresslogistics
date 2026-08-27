@@ -1,7 +1,7 @@
 <?php
 $page        = 'services';
 $title       = 'Our Services — Removals, Storage, Waste & Decluttering | Kent & London';
-$description = 'Home removals, secure storage, waste clearance and professional decluttering across Kent and London. One trusted, female-owned team — all fully insured.';
+$description = 'Home removals, secure storage, waste clearance and professional decluttering across Kent and London. One trusted team.';
 $canonical   = 'https://ingresslogistics.com/services.php';
 
 require_once __DIR__ . '/partials/config.php';
@@ -25,7 +25,7 @@ require __DIR__ . '/partials/head.php';
     <div class="container">
       <span class="eyebrow">Our services · Kent &amp; London</span>
       <h1 class="kinetic">Everything you need to move, store &amp; clear</h1>
-      <p>From a full home removal to secure storage, waste clearance and professional decluttering — one trusted, female-owned team, every job treated to the red carpet experience.</p>
+      <p>From a full home removal to secure storage, waste clearance and professional decluttering — one trusted team, every job treated to the red carpet experience.</p>
       <div class="hero-actions">
         <a href="quote.php" class="btn btn--primary btn--lg">Get your free quote <?= il_icon('arrow-right', 18) ?></a>
         <a href="<?= SITE_PHONE_HREF ?>" class="btn btn--secondary btn--lg"><?= il_icon('phone', 17) ?> Call now</a>

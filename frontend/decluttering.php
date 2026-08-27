@@ -37,6 +37,7 @@ $enquiry = [
     ['type'=>'tel','name'=>'phone','label'=>'Phone number','placeholder'=>'07000 000000','required'=>true,'autocomplete'=>'tel'],
     ['type'=>'email','name'=>'email','label'=>'Email address','placeholder'=>'you@email.com','required'=>true,'col'=>'full','autocomplete'=>'email'],
     ['type'=>'textarea','name'=>'details','label'=>'Tell us about your space','placeholder'=>'What rooms or areas, your goals, any deadlines (like a move date)…','col'=>'full'],
+    ['type'=>'file','name'=>'photos','label'=>'Photos (optional)','col'=>'full','accept'=>'image/jpeg,image/png,image/webp,image/heic','note'=>'Up to 3 images, 5MB each — helps us understand your space.'],
   ],
 ];
 $form_heading_eyebrow = 'Free · no obligation';

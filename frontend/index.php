@@ -1,7 +1,7 @@
 <?php
 $page        = 'home';
 $title       = 'Ingress Logistics — Move Anything, Anywhere | UK Removals';
-$description = 'Female-owned, fully insured home & office removals across the UK from our base in Kent. Unbeatable prices, 5-star service, no hidden fees. Get your free quote today.';
+$description = 'Home & office removals across the UK from our base in Kent. Unbeatable prices, 5-star service, no hidden fees. Get your free quote today.';
 $canonical   = 'https://ingresslogistics.com/';
 
 require_once __DIR__ . '/partials/config.php';
@@ -23,22 +23,22 @@ $service_categories = [
 $steps = [
   ['clipboard-list', 'Tell us about your move', "Share pickup, destination and what you're moving. Takes two minutes — no obligation, no hidden fees."],
   ['calendar-check', 'We plan & confirm', 'You get a clear, transparent quote and a date that suits you. We bring the boxes, materials and the right team.'],
-  ['truck', 'Red carpet move day', 'We pack, lift, transport and place everything with care — on time, fully insured, treated like a VIP.'],
+  ['truck', 'Red carpet move day', 'We pack, lift, transport and place everything with care — on time, treated like a VIP.'],
 ];
 
 $why_points = [
   ['Red carpet experience', 'Every client treated like a VIP, from a single item to a full office.'],
-  ['Female-owned business', "Empathy and integrity in an industry that's often rushed and transactional."],
+  ['Empathy & integrity', "A personal touch in an industry that's often rushed and transactional."],
   ['Reliable & punctual', 'On time, every time — we respect your schedule and your move day.'],
   ['Extra care', 'Fragile and valuable items handled as if they were our own.'],
   ['Transparent pricing', 'A clear quote with no surprises — just honesty.'],
 ];
-$stats = [['200+', 'moves completed'], ['4.9★', 'average rating'], ['100%', 'fully insured'], ['24/7', 'support']];
+$stats = [['200+', 'moves completed'], ['5.0★', 'average rating'], ['24/7', 'support']];
 
 $testimonials = [
-  ['Smooth, careful and right on time. The team wrapped everything like it was their own and nothing was rushed. Genuinely the easiest move we\'ve had.', 'Amara O.', 'Maidstone, Kent', 'Top Tier Home Removal'],
-  ['Booked the man & van for a single sofa and still got first-class service. Friendly, quick and no surprise charges at the end. Will use again.', 'James R.', 'London', 'Man & Van Service'],
-  ['They relocated our office over a weekend with zero disruption. Everything was labelled, set up and ready for Monday. Truly a red carpet experience.', 'Priya S.', 'Bromley', 'Office Relocation'],
+  ['Excellent communication and delivery 👏🏽 👌. From 1st enquiry call to delivery. I fully recommend and will definitely use their services going forward', 'Emma Ajibola', '', ''],
+  ['I cannot recommend Ingress Logistics highly enough. From the very first conversation, Rita is absolutely adorable. So personable, considerate and genuinely attentive to our situation. Moving can seem like juggling glass, but they handled everything with calm assurance and real care.', 'Cynthia Johnson', '', 'Home Removal'],
+  ['We use Victor to help move the inventory of our home staging business. He’s very reliable, helpful and great value for money. We would highly recommend!', 'Emily C.', '', ''],
 ];
 
 $values = ['Excellence', 'Trust', 'Care', 'Innovation', 'Empowerment'];
@@ -47,9 +47,9 @@ $faqs = [
   ['What areas do you cover?', "We're based in Kent but proudly serve clients across the UK. Whether you're moving locally or long-distance, we've got you covered."],
   ['How do I get a quote?', 'Simple — click "Get a free quote", fill in a few details, and we\'ll provide a clear, transparent price with no hidden fees.'],
   ['Do you provide packing materials?', 'Yes. We offer high-quality boxes, bubble wrap and other materials, and can handle all the packing for you with our Top Tier service.'],
-  ['Will my belongings be insured?', 'Absolutely. Your items are fully insured while in our care — extra peace of mind on moving day.'],
+  // ['Will my belongings be insured?', 'Absolutely. Your items are fully insured while in our care — extra peace of mind on moving day.'],
   ['Can you handle fragile or valuable items?', 'Yes. From antiques to pianos, our team has the training and equipment to safely handle delicate, oversized or valuable items.'],
-  ['What makes Ingress Logistics different?', "We're not just movers — we're your moving partners. As a female-owned business we bring professionalism, empathy and a personal touch to every job."],
+  ['What makes Ingress Logistics different?', "We're not just movers — we're your moving partners. We bring professionalism, empathy and a personal touch to every job."],
 ];
 
 /* FAQPage structured data */
@@ -74,40 +74,41 @@ require __DIR__ . '/partials/head.php';
     <div class="hero-split">
       <div class="hero-copy">
         <span class="eyebrow">Kent &amp; London · move, store &amp; clear</span>
-        <h1 class="kinetic">Reliable home removals, storage &amp; waste clearance across Kent &amp; London</h1>
+        <h1 class="kinetic">Reliable home removals, storage &amp; waste clearance across Kent &amp; Greater London</h1>
         <p class="hero-sub"><strong>Move Anything, Anywhere.</strong> Professional removals, secure storage, waste clearance and decluttering — unbeatable prices, 5-star service, every job treated to the red carpet experience.</p>
         <div class="hero-actions">
           <a href="quote.php" class="btn btn--primary btn--lg">Get a quote <?= il_icon('arrow-right', 18) ?></a>
           <a href="<?= SITE_PHONE_HREF ?>" class="btn btn--secondary btn--lg"><?= il_icon('phone', 17) ?> Call now</a>
         </div>
         <!-- REPLACE BEFORE LAUNCH: placeholder rating -->
-        <div class="hero-rating">
+        <!-- <div class="hero-rating">
           <?= il_stars() ?>
-          <span class="rating-score">4.9/5</span>
-          <span class="rating-meta">from 200+ happy movers</span>
-        </div>
+          <span class="rating-score">5/5</span>
+          <span class="rating-meta">from 100+ happy movers</span>
+        </div> -->
       </div>
 
       <div class="hero-media">
-        <div class="placeholder"><span><?= il_icon('truck', 14) ?>moving team · van loading</span></div>
+        <!-- <div class="placeholder"><span><?= il_icon('truck', 14) ?>moving team · van loading</span></div> -->
+         <img src="/images/about-image.jpeg" alt="Home Image" class="hero-image" />
         <!-- REPLACE BEFORE LAUNCH: placeholder review -->
-        <div class="float-card float-insured">
+        <!-- <div class="float-card float-insured">
           <span class="fc-icon"><?= il_icon('shield-check', 22) ?></span>
           <span>
             <span class="fc-title">Fully insured</span>
             <span class="fc-sub">Cover on every move</span>
           </span>
-        </div>
+        </div> -->
         <div class="float-card float-review">
-          <div class="fc-head"><?= il_stars() ?><span class="score">4.9</span></div>
-          <p>"Smooth, careful and right on time." — <strong>Amara, Maidstone</strong></p>
+          <div class="fc-head"><?= il_stars() ?><span class="score">5.0</span></div>
+          <p>"Reliable, always friendly and nothing is too much trouble." — <strong>Nicola, Kent</strong></p>
         </div>
       </div>
     </div>
 
     <div class="hero-bullets-wrap">
       <div class="hero-bullets">
-        <?php foreach (['No hidden fees', 'Fully insured', 'On time, every time'] as $b): ?>
+        <?php foreach (['No hidden fees', 'On time, every time'] as $b): ?>
           <span class="bullet"><span class="bullet-dot"><?= il_icon('check', 13) ?></span><?= $b ?></span>
         <?php endforeach; ?>
       </div>
@@ -170,7 +171,7 @@ require __DIR__ . '/partials/head.php';
             <h2>Why choose Ingress Logistics?</h2>
           </div>
           <p class="whyus-intro">We're more than just movers. We treat your belongings — and your peace of mind — with the utmost care, from house moves to office relocations, delicate antiques to bulky furniture.</p>
-          <p class="whyus-intro whyus-intro--muted">As a female-owned business, we bring empathy and integrity to every job. With us, you'll never feel like just another booking.</p>
+          <p class="whyus-intro whyus-intro--muted">We bring empathy and integrity to every job. With us, you'll never feel like just another booking.</p>
           <!-- REPLACE BEFORE LAUNCH: placeholder stats -->
           <div class="stat-grid">
             <?php foreach ($stats as [$n, $l]): ?>
@@ -224,11 +225,13 @@ require __DIR__ . '/partials/head.php';
     <div class="container">
       <div class="about-grid">
         <div class="about-media">
-          <div class="placeholder"><span><?= il_icon('venus', 14) ?>founder portrait · team at work</span></div>
+          <div class="about-image">
+            <img src="/images/home-image1.jpg" alt="About Image" />
+          </div>
           <div class="about-float">
-            <span class="fc-icon"><?= il_icon('venus', 24) ?></span>
+            <span class="fc-icon"><?= il_icon('heart-handshake', 24) ?></span>
             <div>
-              <div class="fc-title">Proudly female-owned</div>
+              <div class="fc-title">Proudly independent</div>
               <div class="fc-sub">Born in Kent, built on care</div>
             </div>
           </div>
